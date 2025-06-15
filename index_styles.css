@@ -1,0 +1,332 @@
+
+
+/* Styles for the main hero/opener section of the homepage. */
+#opener {
+    width: 100%;
+    min-height: 90vh; /* Ensures the opener takes up most of the viewport height. */
+    background-image: url("../assets/images/responsive_big_webp_0ZUBmNNVLRCfn3NdU55nQ00UF64m2ObtcDS0grx02fA.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover; /* Scales the image to cover the entire area. */
+    background-position: center center; /* Centers the background image. */
+    background-attachment: fixed; /* Creates a parallax-like effect on scroll. */
+    display: flex; /* Enables flexbox for centering content. */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--text-light-on-dark); /* Light text for contrast against dark background. */
+    padding: 20px;
+    position: relative; /* For positioning child elements or pseudo-elements. */
+    overflow: hidden; /* Prevents content/effects from spilling outside the opener bounds. */
+}
+
+
+/* Styles for the content box within the opener section. */
+#opener .opener-content {
+    background-color: rgba(var(--bg-main-rgb), 0.3); /* Semi-transparent background for the content box. */
+    padding: clamp(35px, 6vw, 55px) clamp(45px, 7vw, 65px); /* Responsive padding. */
+    border-radius: var(--border-radius-lg); /* Rounded corners. */
+    animation: fadeInContentIndex 1.6s cubic-bezier(0.23, 1, 0.32, 1) 0.4s forwards; /* Entrance animation. */
+    z-index: 2; /* Ensures content is above any pseudo-element overlays. */
+    box-shadow: 0 0 30px rgba(var(--glow-shadow-light-subtle-rgb, 230,255,230),0.3), 0 6px 20px rgba(0,0,0,0.25); /* Glow and depth shadow. */
+    border: 1px solid rgba(var(--accent-light-green-rgb), 0.4); /* Subtle border. */
+    /* --- ADDED FOR BACKGROUND BLUR --- */
+    backdrop-filter: blur(4px); /* Applies a blur effect to the area behind this element. */
+    /* -webkit-backdrop-filter: blur(4px); */ /* Optional vendor prefix for older Safari versions. */
+}
+/* Keyframes for the entrance animation of the opener content. */
+@keyframes fadeInContentIndex {
+    from { opacity: 0; transform: translateY(35px) scale(0.94); } /* Starts transparent, slightly down and scaled down. */
+    to { opacity: 1; transform: translateY(0) scale(1); } /* Fades in, moves to original position and scale. */
+}
+/* Styles for the main heading (H1) in the opener. */
+#opener h1 { /* Uses Sofia font for a "drawn" or handwritten look. */
+    font-family: var(--special-font);
+     font-size: clamp(3.6rem, 11.5vw, 8rem); /* Large, responsive font size. */
+      font-weight: normal; /* Sofia font has its own inherent weight. */
+    margin: 0 0 18px 0; color: var(--text-light-on-dark);
+    /* Complex text-shadow for a layered, 3D-like effect. */
+    text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa,
+                 0 6px 1px rgba(0,0,0,.1), 0 0 5px rgba(0,0,0,.1), 0 1px 3px rgba(0,0,0,.3),
+                 0 3px 5px rgba(0,0,0,.2), 0 5px 10px rgba(0,0,0,.25), 0 10px 10px rgba(0,0,0,.2),
+                 0 0 15px rgba(var(--accent-gold-highlight-rgb),0.4); /* Adds a goldish aura/glow. */
+    line-height: 1.1; /* Slightly reduced line height for large text. */
+}
+/* Styles for the subtitle in the opener. */
+#opener .opener-subtitle {
+    font-family: var(--primary-font);
+     font-size: clamp(1.25rem, 2.8vw, 1.9rem); /* Responsive font size. */
+      font-weight: 300; /* Lighter font weight. */
+    margin-top: 12px;
+     color: var(--text-light-on-dark);
+      opacity: 0; /* Starts transparent for animation. */
+      letter-spacing: 1.5px; /* Increased letter spacing for style. */
+    /* Applies two animations: one for entrance, another for a subtle breathing effect. */
+    animation: subtitleEntrance 1.2s ease-out 1s forwards, subtitleBreathe 5s ease-in-out infinite alternate 2.5s;
+}
+/* Keyframes for the subtitle's entrance animation. */
+@keyframes subtitleEntrance {
+    to { opacity: 0.95; transform: translateY(0); } /* Fades in to nearly full opacity. */
+}
+/* Keyframes for the subtitle's subtle "breathing" (opacity pulsing) animation. */
+@keyframes subtitleBreathe {
+    from { opacity: 0.9; } /* Slightly less opaque. */
+    to { opacity: 1; } /* Fully opaque. */
+}
+
+/* --- Unique H2 Underlines on Index Page --- */
+/* Customizes the H2 underline for specific sections on the index page to use a gold highlight. */
+.intro-zero-waste h2::after, .principles-section h2::after, .examples-section h2::after {
+    background: var(--accent-gold-highlight); /* Gold background for the underline. */
+     box-shadow: var(--glow-shadow-gold-medium); /* Gold glow effect. */
+      width: 80px; /* Specific width for these underlines. */
+}
+/* Enhances the gold underline shadow on hover for these specific H2s. */
+.intro-zero-waste h2:hover::after, .principles-section h2:hover::after, .examples-section h2:hover::after {
+    box-shadow: 0 0 22px rgba(var(--accent-gold-highlight-rgb), 0.7), 0 0 9px rgba(var(--accent-gold-highlight-rgb), 0.9);
+}
+
+/* --- Introduction to Zero Waste Section --- */
+/* Styles for the "Introduction to Zero Waste" section. */
+.intro-zero-waste {
+    background-color: var(--bg-section-subtle); /* Subtle background color. */
+    padding: clamp(45px, 7vh, 65px) 20px; /* Responsive padding. */
+    border-radius: 0 0 var(--border-radius-lg) var(--border-radius-lg); /* Rounded bottom corners. */
+    margin-bottom: clamp(35px, 5vh, 50px); /* Space below the section. */
+    border: 1px solid var(--border-subtle); border-top: none; /* Subtle border, no top border. */
+    box-shadow: inset 0 8px 18px rgba(var(--accent-dark-green-rgb),0.05); /* Inner shadow for depth. */
+}
+/* Styles for paragraphs within the "Introduction to Zero Waste" section. */
+.intro-zero-waste p {
+    font-size: clamp(1.08rem, 1.7vw, 1.22rem); /* Slightly larger, responsive font size for emphasis. */
+    line-height: 1.8; color: var(--text-main);
+}
+
+/* --- Principles Section (5 R's) --- */
+/* Styles for the "Principles" section, often featuring the 5 R's of zero waste. */
+.principles-section {
+    padding-top: clamp(55px, 7.5vh, 75px); padding-bottom: clamp(55px, 7.5vh, 75px); /* Responsive vertical padding. */
+    background-image: linear-gradient(to bottom, rgba(var(--bg-main-rgb),0.8) 0%, rgba(var(--accent-light-green-rgb),0.08) 100%); /* Subtle gradient background. */
+}
+/* Grid layout for displaying the principles (e.g., Refuse, Reduce, Reuse). */
+.principles-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive grid columns. */
+    gap: clamp(30px, 4.5vw, 40px); margin-top: 40px; /* Responsive gap and top margin. */
+}
+/* Styles for individual principle cards (often <article> elements). */
+.principle-card {
+    background-color: var(--bg-card); /* White background. */
+     padding: clamp(30px, 4.5vh, 40px) 25px; /* Responsive padding. */
+    border-radius: var(--border-radius-lg); /* Rounded corners. */
+     text-align: center; /* Center-aligns content. */
+    box-shadow: var(--card-depth-shadow), var(--glow-shadow-light-subtle); /* Depth and subtle glow shadows. */
+    /* Transitions for smooth hover effects. */
+    transition: transform var(--transition-speed-normal) var(--transition-elastic),
+                box-shadow var(--transition-speed-normal) var(--transition-ease),
+                border-color var(--transition-speed-normal) var(--transition-ease);
+    border: 2px solid transparent; /* Transparent border initially, colored on hover. */
+    border-left: 6px solid var(--accent-primary-green); /* Accent border on the left. */
+    /* Animation is applied by .animated-section from base.css. */
+}
+/* Hover effects for principle cards. */
+.principle-card:hover {
+    transform: translateY(-12px) scale(1.05); /* Lifts and slightly enlarges the card. */
+    box-shadow: var(--card-hover-depth-shadow), var(--glow-shadow-green-medium); /* Enhanced shadows. */
+    border-color: var(--accent-primary-green); /* Adds a full border matching the accent. */
+}
+/* Styles for icons within the principle cards. */
+.principle-icon-img {
+    width: clamp(50px, 7vw, 60px); /* Responsive icon size. */
+    height: clamp(50px, 7vw, 60px);
+     object-fit: contain; /* Ensures icon scales properly within its bounds. */
+    margin-bottom: 20px; /* Space below the icon. */
+    transition: transform 0.35s var(--transition-elastic); /* Smooth transform animation. */
+    filter: drop-shadow(0 0 6px rgba(var(--accent-primary-green-rgb), 0.5)); /* Subtle drop shadow for the icon. */
+}
+/* Hover effect for icons within principle cards. */
+.principle-card:hover .principle-icon-img {
+    transform: scale(1.22) rotate(-8deg); /* Scales up and slightly rotates the icon. */
+    filter: drop-shadow(0 0 10px rgba(var(--accent-primary-green-rgb), 0.7)); /* Enhanced drop shadow. */
+}
+/* Styles for headings (H3) within principle cards. */
+.principle-card h3 {
+    margin-bottom: 14px;
+     font-size: clamp(1.35rem, 2vw, 1.6rem); /* Responsive font size. */
+      color: var(--text-heading);
+    text-shadow: 1px 1px 2px rgba(var(--accent-dark-green-rgb),0.1); /* Subtle text shadow. */
+}
+/* Styles for paragraphs within principle cards. */
+.principle-card p {
+    font-size: clamp(0.92rem, 1.22vw, 1.02rem); /* Responsive font size. */
+    line-height: 1.65; color: var(--text-main);
+}
+
+/* --- Statistics Section --- */
+/* Styles for the statistics section, often featuring impactful numbers. */
+.stats-section {
+    /* Background image with a color overlay and fixed attachment for parallax. */
+    background-image: linear-gradient(rgba(var(--accent-dark-green-rgb), 0.88), rgba(var(--accent-dark-green-rgb), 0.92)), url('../assets/images/forest_parallax_bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: var(--text-light-on-dark); /* Light text for dark background. */
+    text-align: center;
+     padding: clamp(65px, 10.5vh, 95px) 20px; /* Generous responsive padding. */
+    border-top: 4px solid var(--accent-primary-green); /* Decorative top and bottom borders. */
+     border-bottom: 4px solid var(--accent-primary-green);
+    box-shadow: inset 0 0 15px rgba(var(--accent-primary-green-rgb),0.2), inset 0 0 15px rgba(var(--accent-primary-green-rgb),0.2); /* Inner glow effect. */
+}
+/* Adapts H2 styles for the dark background of the stats section. */
+.stats-section h2 { color: var(--text-light-on-dark); text-shadow: var(--glow-shadow-green-medium); }
+/* Adapts H2 underline for the dark background. */
+.stats-section h2::after { background: var(--text-light-on-dark); box-shadow: 0 0 8px rgba(255,255,255,0.4); }
+/* Adapts H3 styles for the dark background. */
+.stats-section h3 { color: var(--text-light-on-dark); opacity: 0.95; }
+/* Adapts paragraph styles for the dark background. */
+.stats-section p { color: var(--text-light-on-dark); opacity: 0.9; }
+
+/* Grid layout for displaying individual statistic items. */
+.stats-grid {
+    display: grid;
+     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid columns. */
+    gap: clamp(35px, 4.5vw, 45px); /* Responsive gap. */
+     margin-top: 45px; /* Space above the grid. */
+}
+/* Styles for individual statistic items. */
+.stat-item {
+    background: rgba(var(--accent-light-green-rgb), 0.08); /* Very subtle light green tinted background. */
+    padding: clamp(30px, 4.5vh, 40px); border-radius: var(--border-radius-lg);
+    backdrop-filter: blur(7px); /* Blur effect for the background behind the item. */
+    /* Transitions for smooth hover effects. */
+    transition: background-color var(--transition-speed-normal) var(--transition-ease),
+                transform var(--transition-speed-normal) var(--transition-elastic),
+                box-shadow var(--transition-speed-normal) var(--transition-ease);
+    border: 1px solid rgba(var(--accent-primary-green-rgb),0.4); /* Subtle border. */
+    box-shadow: var(--glow-shadow-green-small); /* Subtle glow shadow. */
+    /* Animation applied by .animated-section from base.css. */
+}
+/* Hover effects for statistic items. */
+.stat-item:hover {
+    background: rgba(var(--accent-light-green-rgb), 0.15); /* Slightly more opaque background on hover. */
+    transform: translateY(-12px) scale(1.03); /* Lifts and slightly enlarges the item. */
+    box-shadow: var(--glow-shadow-green-medium); /* Enhanced glow. */
+    border-color: var(--accent-primary-green); /* More prominent border. */
+}
+/* Styles for the large numbers displayed in stat items. */
+.stat-number {
+    font-family: var(--heading-font);
+    font-size: clamp(3rem, 7vw, 4rem); /* Large, responsive font size. */
+    font-weight: 700;
+    display: block; /* Ensures it takes full width and margin-bottom applies correctly. */
+    margin-bottom: 12px; color: var(--accent-gold-highlight); /* Gold color for emphasis. */
+    text-shadow: 0 0 10px rgba(var(--accent-gold-highlight-rgb),0.6), 1px 1px 2px rgba(0,0,0,0.2); /* Gold glow and depth shadow. */
+}
+/* Styles for paragraphs within stat items, excluding those that contain the .stat-number. */
+.stat-item p:not(:has(.stat-number)) {
+    font-size: clamp(1.02rem, 1.5vw, 1.12rem); /* Responsive font size for descriptive text. */
+    line-height: 1.6;
+}
+/* Styles for the source attribution note, typically at the bottom of the stats section. */
+.source-note {
+    font-size: clamp(0.88rem, 1.05vw, 0.98rem); /* Smaller, responsive font size. */
+     margin-top: 45px; /* Space above the note. */
+     font-style: italic; /* Italicized text. */
+     opacity: 0.85; /* Slightly transparent. */
+}
+
+/* --- Real-World Examples Section --- */
+/* Styles for the section showcasing real-world examples or case studies. */
+.examples-section {
+    padding-top: clamp(55px, 7.5vh, 75px); /* Responsive top padding. */
+     padding-bottom: clamp(65px, 9.5vh, 85px); /* Responsive bottom padding. */
+    background-color: var(--bg-section-subtle); /* Subtle background color. */
+    border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0; /* Rounded top corners. */
+    margin-top: clamp(35px, 5vh, 50px); /* Space above the section. */
+    border: 1px solid var(--border-subtle); /* Subtle border. */
+     border-bottom: none; /* No bottom border. */
+}
+/* Grid layout for displaying example cards. */
+.examples-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Responsive grid columns. */
+    gap: clamp(35px, 4.5vw, 45px); /* Responsive gap. */
+     margin-top: 40px; /* Space above the grid. */
+}
+/* Styles for individual example cards (often <figure> elements). */
+.example-card {
+    background-color: var(--bg-card); /* White background. */
+    border-radius: var(--border-radius-lg); /* Rounded corners. */
+    overflow: hidden; /* Clips content (like image hover effect) to the card's bounds. */
+    box-shadow: var(--card-depth-shadow); /* Depth shadow. */
+    display: flex; /* Enables flexbox for layout within the card. */
+     flex-direction: column; /* Stacks image and caption vertically. */
+    transition: transform 0.4s var(--transition-elastic), box-shadow 0.4s var(--transition-ease); /* Smooth hover transitions. */
+    border: 1px solid var(--border-subtle); /* Subtle border. */
+     /* Animation applied by .animated-section from base.css. */
+}
+/* Hover effects for example cards. */
+.example-card:hover {
+    transform: translateY(-15px) scale(1.035); /* Lifts and slightly enlarges the card. */
+    box-shadow: var(--card-hover-depth-shadow), var(--glow-shadow-gold-medium); /* Enhanced depth and gold glow shadow. */
+    border-color: var(--accent-gold-highlight); /* Gold border on hover. */
+}
+/* Styles for images within example cards. */
+.example-card img {
+    width: 100%; height: 245px; /* Fixed height for consistent image appearance. */
+     object-fit: cover; /* Ensures image covers the area, cropping if necessary. */
+     display: block; /* Removes extra space below the image. */
+    transition: filter var(--transition-speed-normal) var(--transition-ease), transform 0.55s var(--transition-ease); /* Smooth image transitions. */
+    border-bottom: 5px solid var(--accent-gold-highlight); /* Decorative gold border at the bottom of the image. */
+}
+/* Hover effects for images within example cards. */
+.example-card:hover img {
+    filter: brightness(1.1) saturate(1.15) contrast(1.05); /* Enhances image vibrancy. */
+     transform: scale(1.1); /* Slightly zooms into the image. */
+}
+/* Styles for the caption area (<figcaption>) of example cards. */
+.example-card figcaption {
+    padding: clamp(25px, 3.5vh, 35px); /* Responsive padding. */
+     flex-grow: 1; /* Allows caption to take remaining vertical space if cards have varying text lengths. */
+    background-color: rgba(var(--bg-main-rgb),0.03); /* Very subtle tint from main background. */
+}
+/* Styles for headings (H3) within example card captions. */
+.example-card figcaption h3 {
+    margin-bottom: 15px;
+     font-size: clamp(1.45rem, 2.25vw, 1.7rem); color: var(--text-heading);
+    text-shadow: 1px 1px 2px rgba(var(--accent-dark-green-rgb),0.1); /* Subtle text shadow. */
+}
+/* Styles for paragraphs within example card captions. */
+.example-card figcaption p {
+    font-size: clamp(0.98rem, 1.32vw, 1.08rem); /* Responsive font size. */
+    line-height: 1.75; color: var(--text-main);
+}
+
+/* Responsive Adjustments */
+/* Styles for tablet-sized screens and smaller (max-width: 768px). */
+@media (max-width: 768px) {
+    /* Adjusts font sizes for opener heading and subtitle. */
+    #opener h1 { font-size: clamp(3rem, 10.5vw, 6.2rem); }
+    #opener .opener-subtitle { font-size: clamp(1.12rem, 3.5vw, 1.75rem); }
+    /* Adjusts grid column minimum width for principles. */
+    .principles-grid { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+    /* Makes stats grid single column. */
+    .stats-grid { grid-template-columns: 1fr; }
+    /* Adjusts grid column minimum width for examples. */
+    .examples-grid { grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); }
+}
+/* Styles for mobile-sized screens (max-width: 480px). */
+@media (max-width: 480px) {
+    /* Further reduces font sizes for opener elements. */
+    #opener h1 { font-size: clamp(2.4rem, 10vw, 4rem); }
+    #opener .opener-subtitle { font-size: clamp(1.05rem, 3.8vw, 1.35rem); }
+    /* Reduces font size for principle card headings and icon size. */
+    .principle-card h3 { font-size: 1.3rem; }
+    .principle-icon-img { width: 48px; height: 48px; }
+    /* Reduces font size for stat numbers and padding for stat items. */
+    .stat-number { font-size: clamp(2.4rem, 6.5vw, 3rem); }
+    .stat-item { padding: 25px; }
+    /* Makes examples grid single column. */
+    .examples-grid { grid-template-columns: 1fr; }
+    /* Reduces image height and caption heading font size in example cards. */
+    .example-card img { height: 215px; }
+    .example-card figcaption h3 { font-size: 1.3rem; }
+}

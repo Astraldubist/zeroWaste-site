@@ -1,0 +1,231 @@
+
+/* --- Aspirations Page Opener --- */
+/* Styles for the main hero/opener section of the Aspirations page. */
+#aspirations-opener {
+    min-height: 55vh; /* Sets a minimum height for the opener. */
+
+    
+    background-image: url("");
+
+    background-repeat: no-repeat; /* Prevents the background image from repeating. */
+    background-size: cover; /* Scales the image to cover the entire area. */
+    background-position: center center; /* Centers the background image. */
+    background-attachment: fixed; /* Creates a parallax-like effect on scroll. */
+    display: flex; /* Enables flexbox for centering content. */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--text-light-on-dark); /* Light text for contrast against the background. */
+    padding: 20px;
+    position: relative; /* For positioning child elements or pseudo-elements. */
+    overflow: hidden; /* Prevents content/effects from spilling outside bounds. */
+}
+
+
+#aspirations-opener .opener-content {
+    
+    background-color: rgba(var(--bg-main-rgb), 0.3); /* Adjust transparency */
+
+    padding: clamp(35px, 6vw, 55px) clamp(45px, 7vw, 65px); /* Responsive padding. */
+    border-radius: var(--border-radius-lg); /* Rounded corners. */
+    z-index: 2; /* Ensures this box is visually on top of the #aspirations-opener background. */
+    box-shadow: 0 0 30px rgba(var(--glow-shadow-light-subtle-rgb, 230,255,230),0.3), 0 6px 20px rgba(0,0,0,0.25); /* Glow and depth shadow. */
+    border: 1px solid rgba(var(--accent-light-green-rgb), 0.4); /* Subtle border. */
+
+    /* --- THE "FROSTED GLASS" EFFECT --- */
+    /* Applies a blur effect to the area behind this element. */
+    backdrop-filter: blur(4px); /* Adjust blur amount (e.g., 2px for less, 8px for more) */
+    -webkit-backdrop-filter: blur(4px); /* For Safari compatibility. */
+}
+
+/* Styles for the main heading (H1) within the opener's content box. */
+#aspirations-opener .opener-content h1 {
+    font-family: var(--special-font); /* Uses the defined special font. */
+    text-shadow: 0 0 10px rgba(var(--accent-light-green-rgb), 0.7), 1px 1px 3px rgba(0,0,0,0.4); /* Text shadow for better readability and style. */
+    font-size: clamp(2.8rem, 8vw, 5rem); /* Responsive font size. */
+    margin: 0; /* Removes default margin; spacing handled by .opener-content padding. */
+    color: var(--text-light-on-dark); /* Ensures appropriate text color. */
+}
+
+/* Styles for the subtitle within the opener's content box. */
+#aspirations-opener .opener-content .opener-subtitle {
+    font-family: var(--primary-font); /* Uses the defined primary font. */
+    font-size: clamp(1rem, 2.5vw, 1.5rem); /* Responsive font size. */
+    font-weight: 300; /* Lighter font weight. */
+    margin-top: 10px; /* Space below the H1. */
+    color: var(--text-light-on-dark);
+    opacity: 0.9; /* Slightly transparent. */
+    letter-spacing: 1px; /* Increased letter spacing. */
+}
+
+
+/* --- Custom H2 Underlines on Aspirations Page --- */
+/* Customizes the H2 underline for specific sections on the Aspirations page. */
+.goals-flashcards-section h2::after, .challenges-solutions-section h2::after, .reflection-table-section h2::after {
+    background: var(--accent-dark-green); /* Dark green background for the underline. */
+     box-shadow: var(--glow-shadow-green-medium); /* Green glow effect. */
+     width: 80px; /* Specific width for these underlines. */
+}
+/* Enhances the underline shadow on hover for these specific H2s. */
+.goals-flashcards-section h2:hover::after, .challenges-solutions-section h2:hover::after, .reflection-table-section h2:hover::after {
+    box-shadow: 0 0 22px rgba(var(--accent-dark-green-rgb), 0.7), 0 0 9px rgba(var(--accent-dark-green-rgb), 0.9);
+}
+
+/* --- Aspirations Grid (Flashcards specific layout) --- */
+/* Specific grid layout for flashcards in the aspirations section. */
+.aspirations-grid {
+    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); /* Responsive grid columns. */
+    gap: clamp(30px, 4vw, 40px); /* Responsive gap between cards. */
+}
+/* Enhancements to the base .card style for aspiration flashcards. */
+.aspirations-grid .card {
+    height: 320px; /* Specific height for these cards. */
+    box-shadow: var(--card-depth-shadow), var(--glow-shadow-light-subtle); /* Depth and subtle glow. */
+    border: 2px solid var(--border-color); /* Slightly stronger border. */
+}
+/* Hover effects for aspiration flashcards. */
+.aspirations-grid .card:hover {
+    box-shadow: var(--card-hover-depth-shadow), var(--glow-shadow-green-medium); /* Enhanced shadows on hover. */
+    border-color: var(--accent-primary-green); /* Changes border color on hover. */
+}
+/* Styles for headings (H3) on the front of aspiration flashcards. */
+.aspirations-grid .card-front h3 {
+    font-size: clamp(1.5rem, 2.6vw, 1.85rem); /* Responsive font size. */
+    color: var(--text-heading);
+    text-shadow: 0 0 5px rgba(var(--accent-primary-green-rgb),0.4); /* Subtle green text glow. */
+}
+/* Styles for the back of aspiration flashcards. */
+.aspirations-grid .card-back {
+    background-image: linear-gradient(155deg, rgba(var(--accent-light-green-rgb),0.8) 0%, var(--bg-card) 70%); /* Gradient background. */
+}
+/* Styles for paragraphs on the back of aspiration flashcards. */
+.aspirations-grid .card-back p {
+    font-size: clamp(0.98rem, 1.22vw, 1.06rem); /* Responsive font size. */
+     line-height: 1.7; color: var(--text-main);
+}
+/* Styles for strong text on the back of aspiration flashcards. */
+.aspirations-grid .card-back strong {
+    color: var(--accent-dark-green);
+     text-shadow: none; /* Removes any intense glow effect inherited from base styles. */
+}
+
+/* --- Challenges & Solutions Section --- */
+/* Styles for the section detailing challenges and their corresponding solutions. */
+.challenges-solutions-section {
+    background-image: linear-gradient(140deg, rgba(var(--accent-tan-rgb), 0.15) 0%, var(--bg-section-subtle) 50%, rgba(var(--accent-tan-rgb), 0.15) 100%); /* Subtle gradient background. */
+    padding: clamp(45px, 6.5vh, 65px) 20px; /* Responsive padding. */
+    border-top: 4px solid var(--accent-primary-green); /* Decorative top and bottom borders. */
+     border-bottom: 4px solid var(--accent-primary-green);
+    margin-top: clamp(35px, 5.5vh, 55px); /* Space above the section. */
+     border-radius: var(--border-radius-lg); /* Rounded corners. */
+    box-shadow: inset 0 0 15px rgba(var(--accent-primary-green-rgb),0.1); /* Inner glow effect. */
+}
+/* Container for challenge and solution items, using a grid layout. */
+.challenges-container {
+    display: grid;
+     grid-template-columns: 1fr; /* Single column by default. */
+     gap: clamp(35px, 4.5vw, 45px); /* Responsive gap. */
+      margin-top: 35px; /* Space above the grid. */
+}
+/* Switches to a two-column layout for challenges container on larger screens. */
+@media (min-width: 768px) { .challenges-container { grid-template-columns: 1fr 1fr; } }
+
+/* Common styles for challenge items and solution items (often <article> elements). */
+.challenge-item, .solution-item {
+    background-color: var(--bg-card); /* White background. */
+     padding: clamp(30px, 4vh, 40px); /* Responsive padding. */
+    border-radius: var(--border-radius-lg); /* Rounded corners. */
+     box-shadow: var(--card-depth-shadow); /* Depth shadow. */
+    border: 1px solid var(--border-subtle); /* Subtle border. */
+     border-left-width: 8px; /* Thicker left border for emphasis. */
+    /* Transitions for smooth hover effects. */
+    transition: transform 0.35s var(--transition-elastic), box-shadow 0.35s var(--transition-ease), border-color 0.35s var(--transition-ease);
+    /* Animation is applied by .animated-section from base.css. */
+}
+/* Hover effects for challenge and solution items. */
+.challenge-item:hover, .solution-item:hover {
+    transform: translateY(-10px) scale(1.02); /* Lifts and slightly enlarges the item. */
+}
+/* Specific left border color for challenge items. */
+.challenge-item { border-left-color: var(--accent-gold-highlight); }
+/* Specific left border color for solution items. */
+.solution-item { border-left-color: var(--accent-primary-green); }
+/* Specific hover effects for challenge items (shadow and border color). */
+.challenge-item:hover { box-shadow: var(--card-hover-depth-shadow), var(--glow-shadow-gold-medium); border-color: var(--accent-gold-highlight); }
+/* Specific hover effects for solution items (shadow and border color). */
+.solution-item:hover { box-shadow: var(--card-hover-depth-shadow), var(--glow-shadow-green-medium); border-color: var(--accent-primary-green); }
+
+/* Styles for headings (H3) within challenge and solution items. */
+.challenge-item h3, .solution-item h3 {
+    display: flex; /* Allows alignment of icon and text. */
+     align-items: center; /* Vertically aligns icon and text. */
+      gap: 18px; /* Space between icon and text. */
+       margin-bottom: 22px; /* Space below the heading. */
+    font-size: clamp(1.55rem, 2.6vw, 1.95rem); /* Responsive font size. */
+     color: var(--text-heading);
+}
+/* Specific text shadow for challenge item headings. */
+.challenge-item h3 { text-shadow: 0 0 6px rgba(var(--accent-gold-highlight-rgb),0.4); }
+/* Specific text shadow for solution item headings. */
+.solution-item h3 { text-shadow: 0 0 6px rgba(var(--accent-primary-green-rgb),0.4); }
+
+/* Styles for icons used in challenge and solution items. */
+.cs-icon { /* cs stands for challenge/solution */
+    width: clamp(32px, 4.2vw, 42px); /* Responsive icon size. */
+     height: clamp(32px, 4.2vw, 42px);
+      object-fit: contain; /* Ensures icon scales properly. */
+    transition: transform 0.35s var(--transition-elastic); /* Smooth transform animation. */
+}
+/* Hover effect for icons in challenge items. */
+.challenge-item:hover .cs-icon {
+    filter: drop-shadow(0 0 7px rgba(var(--accent-gold-highlight-rgb),0.6)); /* Gold drop shadow. */
+    transform: rotate(-10deg) scale(1.12); /* Rotates and scales the icon. */
+}
+/* Hover effect for icons in solution items. */
+.solution-item:hover .cs-icon {
+    filter: drop-shadow(0 0 7px rgba(var(--accent-primary-green-rgb),0.6)); /* Green drop shadow. */
+    transform: rotate(10deg) scale(1.12); /* Rotates (opposite direction) and scales the icon. */
+}
+/* Styles for unordered lists within challenge and solution items. */
+.challenge-item ul, .solution-item ul { list-style-type: none; padding-left: 5px; /* Removes default list styling. */ }
+/* Styles for list items (li) within challenge and solution items. */
+.challenge-item li, .solution-item li {
+    padding-left: 35px; /* Space for custom bullet/icon. */
+     position: relative; /* For positioning the ::before pseudo-element. */
+      margin-bottom: 14px; /* Space between list items. */
+    font-size: clamp(0.95rem, 1.22vw, 1.05rem); /* Responsive font size. */
+     line-height: 1.7; color: var(--text-main);
+}
+/* Custom bullet point (emoji) for challenge list items. */
+.challenge-item li::before { content: '🚧'; position: absolute; left: 0; font-size: 1.15em; top: 2px; opacity: 0.85; }
+/* Custom bullet point (emoji) for solution list items. */
+.solution-item li::before { content: '💡'; position: absolute; left: 0; font-size: 1.15em; top: 2px; opacity: 0.85; }
+
+/* --- Reflection Table Section --- */
+/* Styles for the section containing a reflection data table. */
+.reflection-table-section { margin-top: clamp(35px, 5.5vh, 55px); /* Space above the section. */ }
+/* Styles for the container of the reflection data table. */
+.reflection-table-section .data_table_container {
+    margin-top: 35px; /* Space above the table. */
+    box-shadow: var(--card-depth-shadow); /* Depth shadow. */
+    border: 1px solid var(--border-subtle); /* Subtle border. */
+}
+/* Styles for table header (th) cells in the reflection table. */
+.reflection-table-section .data_table th {
+    background-color: var(--accent-dark-green); /* Dark green background. */
+    color: var(--text-light-on-dark); /* Light text color. */
+    font-size: clamp(0.88rem, 1.12vw, 0.98rem); /* Responsive font size. */
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.2); /* Subtle text shadow for depth. */
+}
+/* Hover effect for table rows in the reflection table. */
+.reflection-table-section .data_table tbody tr:hover {
+    background-color: rgba(var(--accent-light-green-rgb), 0.5); /* Light green tint on hover. */
+}
+/* Changes text color of cells in a hovered row in the reflection table. */
+.reflection-table-section .data_table tbody tr:hover td { color: var(--text-heading); }
+/* Styles for table data (td) cells in the reflection table. */
+.reflection-table-section .data_table td {
+    font-size: clamp(0.88rem, 1.12vw, 0.98rem); /* Responsive font size. */
+     color: var(--text-main);
+}

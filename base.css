@@ -1,0 +1,593 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap'); /* Heading font */
+@import url('https://fonts.googleapis.com/css2?family=Sofia&display=swap'); /* Existing special font for some titles */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&display=swap');
+
+/* --- CSS Custom Properties (Variables) --- */
+/* Defines global CSS variables for consistent styling across the site, including fonts, colors, and layout values. */
+:root {
+    /* Zero-Waste Earthy Palette (with Glow Enhancements) */
+    /* Font families for primary text, headings, and special elements. */
+    --primary-font: 'Poppins', sans-serif;
+    --heading-font: 'Montserrat', sans-serif;
+    --special-font: 'Sofia', cursive; /* To use Cinzel Decorative, change this to: 'Cinzel Decorative', cursive; */
+
+    /* Background colors for main content, sections, and cards. Includes RGB versions for opacity. */
+    --bg-main: rgb(253, 250, 245); /* Light, earthy beige */
+    --bg-main-rgb: 253, 250, 245;
+    --bg-section-subtle: rgb(245, 240, 232); /* Slightly darker beige for sections */
+    --bg-card: #ffffff; /* White for cards */
+    --bg-card-rgb: 255, 255, 255;
+
+    /* Text colors for main content, headings, light text on dark backgrounds, and muted text. */
+    --text-main: rgb(40, 90, 40); /* Rich, earthy green */
+    --text-heading: rgb(15, 75, 15); /* Deep forest green for headings */
+    --text-light-on-dark: rgb(248, 248, 242); /* Off-white/Beige for dark BGs */
+    --text-muted: rgb(110, 110, 100); /* Muted earthy grey/brown */
+    --text-muted-rgb: 110, 110, 100;
+
+    /* Accent colors for highlights, buttons, and other interactive elements. */
+    --accent-primary-green: rgb(76, 175, 80); /* Brighter, more vibrant leaf green */
+    --accent-primary-green-rgb: 76, 175, 80;
+    --accent-dark-green: rgb(56, 142, 60); /* Darker shade of primary green */
+    --accent-dark-green-rgb: 56, 142, 60;
+    --accent-tan: rgb(210, 180, 140); /* Natural wood tone */
+    --accent-tan-rgb: 210, 180, 140;
+    --accent-light-green: rgb(200, 230, 200); /* Light minty/leaf green */
+    --accent-light-green-rgb: 200, 230, 200;
+    --accent-gold-highlight: rgb(227, 180, 68); /* Warm, earthy gold */
+    --accent-gold-highlight-rgb: 227, 180, 68;
+
+    /* Border colors. */
+    --border-color: rgba(var(--accent-dark-green-rgb), 0.6);
+    --border-subtle: rgba(var(--accent-tan-rgb), 0.5);
+
+    /* Shadow variables for creating depth and glow effects. */
+    --glow-shadow-green-small: 0 0 10px rgba(var(--accent-light-green-rgb), 0.7), 0 0 5px rgba(var(--accent-light-green-rgb), 0.9);
+    --glow-shadow-green-medium: 0 0 18px rgba(var(--accent-primary-green-rgb), 0.5), 0 0 7px rgba(var(--accent-primary-green-rgb), 0.7);
+    --glow-shadow-gold-medium: 0 0 18px rgba(var(--accent-gold-highlight-rgb), 0.5), 0 0 7px rgba(var(--accent-gold-highlight-rgb), 0.7);
+    --glow-shadow-light-subtle: 0 0 20px rgba(240, 255, 240, 0.5); /* Very subtle light green diffusion */
+    /* For page-opener .opener-content box-shadow, ensure --glow-shadow-light-subtle-rgb is defined if used, or adjust the shadow:
+       It was using var(--glow-shadow-light-subtle-rgb, 230, 255, 230)
+       Let's ensure --glow-shadow-light-subtle uses an RGB value directly for consistency or define the RGB var.
+       Given it's rgba(240, 255, 240, 0.5), we can use that.
+    */
+    --glow-shadow-light-subtle-rgb: 240, 255, 240;
+
+
+    /* Shadow variables specifically for cards to create depth and hover effects. */
+    --card-depth-shadow: 0 7px 22px rgba(var(--accent-dark-green-rgb), 0.1); /* Softer depth */
+    --card-hover-depth-shadow: 0 10px 25px rgba(var(--accent-dark-green-rgb), 0.15);
+
+    /* Standard layout and transition variables. */
+    --section-padding: clamp(50px, 8vh, 80px) 20px; /* Responsive padding for sections. */
+    --container-width: 90%; /* Default container width. */
+    --max-container-width: 1200px; /* Maximum container width. */
+    --border-radius-sm: 8px; /* Small border radius. */
+    --border-radius-md: 16px; /* Medium border radius. */
+    --border-radius-lg: 24px; /* Large border radius. */
+    --transition-speed-fast: 0.3s; /* Fast transition duration. */
+    --transition-speed-normal: 0.5s; /* Normal transition duration. */
+    --transition-speed-slow: 0.7s; /* Slow transition duration. */
+    --transition-ease: ease-in-out; /* Standard easing function for transitions. */
+    --transition-elastic: cubic-bezier(0.64, 0.04, 0.35, 1); /* Elastic easing function. */
+}
+
+/* --- Global Styles & Resets --- */
+/* Applies box-sizing to all elements for easier layout management and resets default margins and paddings. */
+*, *::before, *::after {
+    box-sizing: border-box; margin: 0; padding: 0;
+}
+/* Enables smooth scrolling behavior and sets the base font size for rem calculations. */
+html { scroll-behavior: smooth; font-size: 100%; }
+/* Basic body styling: background color, default font, text color, line height, and overflow control. */
+body {
+    background: var(--bg-main);
+    font-family: var(--primary-font);
+     color: var(--text-main);
+    line-height: 1.75;
+    overflow-x: hidden; /* Prevents horizontal scrolling. */
+    -webkit-font-smoothing: antialiased; /* Improves font rendering on WebKit browsers. */
+    -moz-osx-font-smoothing: grayscale; /* Improves font rendering on Firefox (macOS). */
+}
+
+/* --- Typography --- */
+/* Base styles for heading elements (h1-h6). */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--heading-font);
+    color: var(--text-heading);
+    margin-bottom: 1.2rem; line-height: 1.35;
+    font-weight: 700;
+}
+/* Specific styles for h2 elements, including responsive font size, centering, and a bottom underline effect. */
+h2 {
+    font-size: clamp(2.1rem, 4.2vw, 2.8rem);
+     text-align: center;
+    margin-bottom: clamp(35px, 5.5vh, 55px);
+     position: relative; /* For positioning the ::after pseudo-element. */
+     padding-bottom: 15px;
+    text-shadow: 1px 1px 2px rgba(var(--accent-dark-green-rgb),0.1); /* Subtle depth shadow. */
+}
+/* Creates an animated underline for h2 elements. */
+h2::after { /* Underline effect */
+    content: '';
+    display: block;
+    width: 85px;
+    height: 4px;
+    background: var(--accent-primary-green);
+    box-shadow: var(--glow-shadow-green-small); /* Make underline "glow" subtly */
+    margin: 15px auto 0;
+     border-radius: 3px;
+    transform-origin: center;
+    transition: transform var(--transition-speed-normal) var(--transition-elastic),
+                box-shadow var(--transition-speed-normal) var(--transition-ease);
+}
+/* Enhances the h2 underline on hover. */
+h2:hover::after {
+    transform: scaleX(1.2);
+    box-shadow: var(--glow-shadow-green-medium);
+}
+/* Specific styles for h3 elements. */
+h3 {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    color: var(--accent-dark-green);
+    text-shadow: 1px 1px 2px rgba(var(--accent-dark-green-rgb),0.05);
+}
+/* Base styles for paragraph elements, including responsive font size and max-width for readability. */
+p {
+    font-size: clamp(1rem, 1.5vw, 1.1rem);
+     margin-bottom: 1.3rem;
+     max-width: 70ch; /* Limits line length for better readability. */
+}
+/* Centers paragraphs directly within .content-section that don't have their own class. */
+.content-section p:not([class]) { margin-left: auto; margin-right: auto; }
+/* Styles for paragraphs immediately following an h2 in a .content-section, typically for section introductions. */
+.content-section > h2 + p:not([class]) {
+    text-align: center;
+    font-size: clamp(1.05rem, 1.6vw, 1.18rem);
+     color: var(--text-muted);
+    margin-bottom: clamp(35px, 5.5vh, 55px);
+     max-width: 75ch;
+}
+/* Base styles for anchor (link) elements. */
+a {
+    color: var(--accent-primary-green);
+    font-weight: 600; text-decoration: none;
+    transition: color var(--transition-speed-fast) var(--transition-ease),
+                text-shadow var(--transition-speed-fast) var(--transition-ease);
+}
+/* Hover and focus styles for anchor elements. */
+a:hover, a:focus {
+    color: var(--accent-dark-green);
+    text-shadow: 0 0 8px rgba(var(--accent-primary-green-rgb), 0.5);
+    text-decoration: none; /* Ensures no underline on hover by default, can be added specifically. */
+}
+
+/* --- Navbar --- */
+/* Styles for the main navigation bar. */
+.navbar {
+    background-color: rgba(var(--accent-tan-rgb), 0.92); /* Semi-transparent tan background. */
+    backdrop-filter: blur(8px); /* Frosted glass effect. */
+    padding: 15px 5%; display: flex;
+    justify-content: space-between; /* Spaces logo and navigation links. */
+    align-items: center;
+    position: sticky; /* Makes the navbar stick to the top on scroll. */
+     top: 0; z-index: 1000; /* Ensures navbar stays on top of other content. */
+    box-shadow: 0 3px 12px rgba(var(--accent-dark-green-rgb), 0.1); /* Subtle bottom shadow. */
+    border-bottom: 1px solid rgba(var(--accent-dark-green-rgb), 0.15); /* Subtle bottom border. */
+}
+/* Styles for the navigation logo link. */
+.nav-logo a {
+    font-family: var(--special-font);
+     font-size: clamp(1.7rem, 3vw, 2.1rem);
+    color: var(--text-heading);
+    font-weight: 700;
+     text-decoration: none;
+    transition: transform var(--transition-speed-fast) var(--transition-ease),
+                color var(--transition-speed-fast) var(--transition-ease);
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1); /* Subtle text shadow for depth. */
+}
+/* Hover effect for the navigation logo. */
+.nav-logo a:hover {
+    color: var(--accent-dark-green);
+     transform: scale(1.03); /* Slight zoom effect. */
+}
+/* Styles for the navigation list (ul). */
+.navbar ul { list-style-type: none; display: flex; gap: 10px; }
+/* Styles for individual navigation links (li a). */
+.navbar li a {
+    display: block; color: var(--text-heading);
+    text-align: center;
+    padding: 12px 20px;
+     text-decoration: none;
+     font-weight: 600;
+    font-size: clamp(0.9rem, 1.2vw, 1rem);
+     border-radius: var(--border-radius-sm);
+    position: relative; /* For positioning the ::after pseudo-element. */
+     overflow: hidden; /* Ensures ::after doesn't overflow rounded corners. */
+    transition: color var(--transition-speed-normal) var(--transition-ease),
+                background-color var(--transition-speed-normal) var(--transition-ease);
+}
+/* Creates an animated underline effect for navigation links. */
+.navbar li a::after { /* Underline effect */
+    content: ''; position: absolute;
+     bottom: 6px; /* Position of underline. */
+      left: 50%;
+     transform: translateX(-50%); /* Centers the underline. */
+    width: 0%; /* Starts with no width, animates on hover. */
+     height: 2.5px;
+      background-color: var(--accent-dark-green);
+    box-shadow: var(--glow-shadow-green-small); /* Subtle glow for underline. */
+     border-radius: 1px;
+    transition: width var(--transition-speed-normal) var(--transition-elastic);
+}
+/* Expands the underline on hover or when the link is active. */
+.navbar li a:hover::after, .navbar li a.active::after {
+    width: calc(100% - 28px); /* Adjusts width to be slightly less than text. */
+}
+/* Hover effect for navigation links. */
+.navbar li a:hover {
+    color: var(--accent-dark-green);
+    background-color: rgba(var(--accent-primary-green-rgb), 0.05); /* Very subtle hover background. */
+}
+/* Styles for the active navigation link. */
+.navbar li a.active {
+    color: var(--accent-dark-green); font-weight: 700;
+    background-color: rgba(var(--accent-primary-green-rgb), 0.1); /* Slightly more prominent background for active link. */
+}
+
+
+/* --- Generic Page Opener (for sub-pages) --- */
+/* Styles for the hero/opener section on sub-pages. Background image is typically set in page-specific CSS. */
+.page-opener {
+    width: 100%;
+     min-height: 50vh; /* Minimum height, can expand with content. */
+     background-size: cover; /* Ensures background image covers the area. */
+     background-position: center; /* Centers the background image. */
+    display: flex;
+     flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    text-align: center;
+    color: var(--text-light-on-dark); /* Light text for dark backgrounds. */
+    padding: 20px;
+    position: relative; /* For stacking context of ::before overlay. */
+    overflow: hidden; /* Prevents content overflow. */
+}
+/* Creates a semi-transparent overlay on the page opener for better text readability. */
+.page-opener::before { /* Overlay */
+    content: '';
+     position: absolute;
+     top: 0;
+      left: 0;
+       right:0;
+       bottom:0;
+    background: linear-gradient(rgba(var(--accent-dark-green-rgb), 0.5), rgba(var(--accent-dark-green-rgb), 0.75)); /* Greenish overlay */
+    z-index: 1; /* Places overlay above background image but below content. */
+}
+/* Styles for the content container within the page opener. */
+.page-opener .opener-content {
+    background-color: rgba(var(--bg-main-rgb), 0.2); /* Subtle light box on dark overlay. */
+    padding: clamp(25px, 5vw, 45px) clamp(30px, 6vw, 55px); /* Responsive padding. */
+    border-radius: var(--border-radius-md);
+     z-index: 2; /* Places content above the overlay. */
+    animation: fadeInContentBase 1.2s var(--transition-ease) 0.2s forwards; /* Fade-in animation. */
+    box-shadow: 0 0 25px rgba(var(--glow-shadow-light-subtle-rgb),0.3), 0 4px 15px rgba(0,0,0,0.2); /* Glow and depth shadow. */
+    border: 1px solid rgba(var(--accent-light-green-rgb),0.4); /* Subtle border. */
+}
+/* Keyframes for the fade-in animation of the opener content. */
+@keyframes fadeInContentBase {
+    from { opacity: 0; transform: translateY(20px) scale(0.96); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+/* Styles for the main heading within the page opener. */
+.page-opener h1 { /* Sofia or Cinzel based on page-specific styling */
+    font-family: var(--special-font); /* Ensure this matches intended design, or override in page-specific CSS */
+    font-size: clamp(2.3rem, 5.8vw, 4rem); /* Responsive font size. */
+     color: var(--text-light-on-dark);
+    text-shadow: 0 0 10px rgba(var(--accent-gold-highlight-rgb), 0.6), 1px 1px 3px rgba(0,0,0,0.5); /* Gold highlight text shadow. */
+    margin:0 0 15px 0; letter-spacing: 0.5px;
+}
+/* Styles for the subtitle within the page opener. */
+.page-opener .opener-subtitle {
+    font-family: var(--primary-font);
+     font-size: clamp(1.05rem, 2.3vw, 1.45rem); /* Responsive font size. */
+    color: var(--text-light-on-dark);
+     font-weight: 300; opacity: 0.9; /* Slightly transparent. */
+}
+
+/* --- Content Sections --- */
+/* Basic styling for general content sections. */
+.content-section {
+    padding: var(--section-padding); max-width: var(--max-container-width); margin: 0 auto; /* Centered with max width and padding. */
+    position: relative; /* For potential positioning of child elements or pseudo-elements. */
+}
+
+/* --- Flashcards Grid (Base Styling) --- */
+/* Styles for the container of flashcards, using a responsive grid layout. */
+.flashcards {
+    display: grid;
+     grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); /* Creates responsive columns. */
+    gap: clamp(25px, 3.5vw, 35px); /* Responsive gap between cards. */
+    max-width: var(--max-container-width);
+    margin: 40px auto; /* Spacing and centering. */
+    justify-content: center;
+}
+/* Individual flashcard styling. */
+.card { /* Card entrance animation via .animated-section class */
+    height: 300px; /* Fixed height for consistent card size. */
+     perspective: 1600px; /* Sets perspective for 3D flip effect. */
+      cursor: pointer; /* Indicates interactivity. */
+}
+/* Inner container for the card, handles the 3D flip transformation. */
+.card-inner {
+    position: relative;
+     width: 100%;
+      height: 100%;
+    transition: transform var(--transition-speed-slow) var(--transition-elastic); /* Smooth flip animation. */
+    transform-style: preserve-3d; /* Enables 3D transformations for children. */
+}
+/* Triggers the card flip on hover. */
+.card:hover .card-inner { transform: rotateY(180deg); }
+/* Common styles for both the front and back faces of the card. */
+.card-front, .card-back {
+    position: absolute; /* Positioned within card-inner for flip. */
+     width: 100%; height: 100%;
+      backface-visibility: hidden; /* Hides the back face during flip. */
+    border: 2px solid var(--border-color);
+     border-radius: var(--border-radius-lg);
+    background-color: var(--bg-card);
+     display: flex;
+     flex-direction: column;
+    align-items: center;
+     justify-content: center;
+     padding: 25px; text-align: center;
+    box-shadow: inset 0 0 10px rgba(var(--accent-primary-green-rgb), 0.05), var(--card-depth-shadow); /* Inner and outer shadow. */
+    transition: border-color var(--transition-speed-normal), box-shadow var(--transition-speed-normal);
+}
+/* Hover effects for the card faces (border and shadow). */
+.card:hover .card-front, .card:hover .card-back {
+    border-color: var(--accent-primary-green);
+    box-shadow: inset 0 0 15px rgba(var(--accent-primary-green-rgb), 0.1), var(--glow-shadow-green-medium); /* Enhanced glow on hover. */
+}
+/* Styles for the heading on the front of the card. */
+.card-front h3 {
+    margin: 0;
+    font-size: clamp(1.45rem, 2.5vw, 1.75rem);
+    font-family: var(--heading-font);
+     color: var(--text-heading);
+    text-shadow: 0 0 6px rgba(var(--accent-primary-green-rgb), 0.3); /* Subtle text glow. */
+}
+/* Styles specific to the back face of the card. */
+.card-back {
+    transform: rotateY(180deg); /* Initially rotated to be hidden. */
+    background-image: linear-gradient(160deg, var(--accent-light-green) 0%, var(--bg-card) 80%); /* Subtle gradient background. */
+}
+/* Styles for paragraphs on the back of the card. */
+.card-back p {
+    font-size: clamp(0.95rem, 1.2vw, 1.05rem);
+     max-width: 100%; line-height: 1.65;
+    color: var(--text-main);
+}
+/* Styles for strong text (often used as a sub-heading) on the back of the card. */
+.card-back strong {
+    color: var(--accent-dark-green);
+     display: block;
+      margin-bottom: 10px;
+    font-size: 1.08em; text-shadow: 0 0 4px rgba(var(--accent-dark-green-rgb),0.3); /* Subtle text glow. */
+}
+
+/* --- Data Table (Base Styling) --- */
+/* Container for data tables, allowing horizontal scrolling on smaller screens. */
+.data_table_container {
+    overflow-x: auto; /* Enables horizontal scroll if table is wider than container. */
+     margin: 40px auto; max-width: 100%;
+    border-radius: var(--border-radius-md);
+    box-shadow: 0 0 20px rgba(var(--accent-tan-rgb),0.2), var(--card-depth-shadow); /* Shadow for depth. */
+    border: 1px solid var(--border-subtle);
+}
+/* Base styles for the data table. */
+.data_table {
+    font-size: clamp(0.9rem, 1.2vw, 1rem);
+     width: 100%; min-width: 650px; /* Ensures table has a minimum width before scrolling. */
+    border-collapse: collapse; /* Collapses borders for a cleaner look. */
+}
+/* Styles for table header (th) and data (td) cells. */
+.data_table th, .data_table td {
+    border: 1px solid var(--border-subtle);
+    padding: clamp(12px, 1.6vh, 16px) clamp(15px, 2.2vw, 20px); /* Responsive padding. */
+    text-align: left; color: var(--text-main);
+}
+/* Styles specifically for table header (th) cells. */
+.data_table th {
+    background-color: var(--accent-tan);
+     color: var(--text-heading);
+    font-weight: 700; text-transform: uppercase;
+     letter-spacing: 1px;
+    text-shadow: 1px 1px 1px rgba(255,255,255,0.3); /* Light text shadow for embossed effect. */
+}
+/* Alternating row background color for better readability (zebra striping). */
+.data_table tbody tr:nth-child(even) {
+    background-color: rgba(var(--accent-tan-rgb), 0.08);
+}
+/* Hover effect for table rows. */
+.data_table tbody tr:hover {
+    background-color: rgba(var(--accent-gold-highlight-rgb), 0.15);
+    cursor: default;
+}
+/* Changes text color of cells in a hovered row. */
+.data_table tbody tr:hover td { color: var(--text-heading); }
+
+/* --- Footer --- */
+/* Styles for the website footer. */
+footer {
+    background-color: var(--accent-dark-green);
+     color: var(--text-light-on-dark);
+    text-align: center;
+    padding: clamp(30px, 5.5vh, 45px) 20px; /* Responsive padding. */
+    margin-top: clamp(50px, 9vh, 80px); /* Space above the footer. */
+    font-size: clamp(0.88rem, 1.1vw, 0.98rem);
+    border-top: 4px solid var(--accent-primary-green); /* Decorative top border. */
+    box-shadow: 0 -5px 15px rgba(var(--accent-primary-green-rgb), 0.25); /* Shadow above the footer. */
+}
+/* Styles for paragraphs within the footer. */
+footer p {
+    margin-bottom: 12px;
+     color: var(--text-light-on-dark);
+     opacity: 0.9; /* Slightly transparent. */
+    max-width: none; /* Allows footer text to span full width. */
+    line-height: 1.65;
+}
+/* Styles for links within the footer. */
+footer a {
+    color: var(--accent-light-green); font-weight: 600; text-decoration: none;
+}
+/* Hover effect for footer links. */
+footer a:hover {
+    color: #fff;
+    text-shadow: var(--glow-shadow-green-small); /* Adds a subtle glow on hover. */
+    text-decoration: underline;
+     text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+}
+
+/* Base class for elements that will animate on scroll. Initially hidden and shifted. */
+.animated-section, .card.animated-section { /* Apply to cards too for initial load */
+    opacity: 0;
+    transform: translateY(50px); /* Default starting position (shifted down). */
+    transition: opacity var(--transition-speed-slow) ease-out, transform var(--transition-speed-slow) ease-out;
+    transition-delay: var(--animation-delay, 0.1s); /* Fallback delay, can be overridden. */
+}
+/* Uses CSS @supports to apply modern scroll-driven animations if supported by the browser. */
+@supports (animation-timeline: view()) {
+    /* If animation-timeline is supported, use it for smoother, more performant animations. */
+    .animated-section, .card.animated-section {
+        transition: none; /* Disable JS-driven transition if timeline is supported. */
+        animation: default-fade-in-up linear forwards; /* Default animation. */
+        animation-timeline: view(); /* Links animation to scroll position. */
+        animation-range-start: entry 5%; /* Animation starts when 5% of element is visible. */
+        animation-range-end: entry 40%; /* Animation ends when 40% of element is visible. */
+    }
+    /* Specific animation types that can be applied by adding corresponding classes. */
+    .animated-section.fade-in { transform: translateY(0) scale(0.95); animation-name: default-fade-in; }
+    .animated-section.slide-in-left { transform: translateX(-70px); animation-name: default-slide-left; }
+    .animated-section.slide-in-right { transform: translateX(70px); animation-name: default-slide-right; }
+
+    /* Staggered animation for child elements if the parent has .stagger-children. */
+    .animated-section.stagger-children > * {
+        opacity: 0; transform: translateY(25px);
+        animation: default-fade-in-up linear forwards;
+        animation-timeline: view(block); /* Each child animates as it enters the view. */
+        animation-range-start: entry 10%;
+         animation-range-end: entry 50%;
+    }
+    /* Fallback staggering using CSS delay - this part is commented out as animation-timeline per child is preferred. */
+    /*
+    .animated-section.stagger-children.use-delay > *:nth-child(1) { animation-delay: 0.1s !important; }
+    .animated-section.stagger-children.use-delay > *:nth-child(2) { animation-delay: 0.2s !important; }
+    .animated-section.stagger-children.use-delay > *:nth-child(3) { animation-delay: 0.3s !important; }
+    */
+}
+/* Fallback for browsers that do not support animation-timeline. Uses JavaScript to add 'is-visible-fallback'. */
+@media (prefers-reduced-motion: no-preference) {
+    .animated-section.is-visible-fallback, .card.animated-section.is-visible-fallback {
+        opacity: 1; transform: translateY(0);
+    }
+}
+
+/* Keyframes for Entrance Animations used by scroll-triggered effects. */
+/* Default fade-in and move-up animation. */
+@keyframes default-fade-in-up { to { opacity: 1; transform: translateY(0); } }
+/* Simple fade-in with slight scale-up animation. */
+@keyframes default-fade-in { to { opacity: 1; transform: translateY(0) scale(1); } }
+/* Slide-in from left animation. */
+@keyframes default-slide-left { to { opacity: 1; transform: translateX(0); } }
+/* Slide-in from right animation. */
+@keyframes default-slide-right { to { opacity: 1; transform: translateX(0); } }
+
+/* Body background subtle gradient animation - optional */
+/* Prepares body for pseudo-element stacking. */
+body { position: relative; } /* Already defined earlier, but ensure it's there for stacking context */
+/* Creates a subtle, animated gradient background overlay for the entire body. */
+body::after {
+    content: '';
+     position: fixed; /* Fixed position to cover the viewport. */
+    top: 0;
+    left: 0;
+    width: 100%;
+     height: 100%;
+    background: linear-gradient(300deg, rgba(var(--accent-light-green-rgb), 0.05), rgba(var(--accent-tan-rgb), 0.03), rgba(var(--bg-main-rgb), 0.1));
+    background-size: 280% 280%; /* Larger background size for smooth animation. */
+    animation: earthyGradientBG 40s ease infinite; /* Applies the gradient animation. */
+    z-index: -2; opacity: 0.7; /* Places behind content and sets transparency. */
+}
+/* Keyframes for the animated body background gradient. */
+@keyframes earthyGradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Responsive Adjustments */
+/* Styles for tablet-sized screens and smaller (max-width: 768px). */
+@media (max-width: 768px) {
+    /* Adjusts navbar layout to be column-based. */
+    .navbar {
+        flex-direction: column;
+         align-items: flex-start;
+          padding: 12px 4%;
+    }
+    /* Adjusts navbar list and links for vertical layout. */
+    .navbar ul {
+        flex-direction: column;
+         width: 100%;
+         margin-top: 15px;
+          gap: 0;
+    }
+    .navbar li a {
+        text-align: left;
+        padding: 14px 18px;
+         width: 100%; border-radius: var(--border-radius-sm);
+    }
+    /* Adjusts navbar link underline for vertical layout (becomes a side indicator). */
+    .navbar li a::after {
+        bottom: auto;
+        top: 50%;
+         left: 8px;
+          transform: translateY(-50%) scaleY(0); /* Initial state for transition */
+        width: 3px; height: 0%; /* Animate height */
+         transform-origin: center;
+        transition: height var(--transition-speed-normal) var(--transition-elastic),
+                    transform var(--transition-speed-normal) var(--transition-elastic); /* Added transform for scaleY */
+    }
+    .navbar li a:hover::after, .navbar li a.active::after {
+        height: 60%;
+         width: 3px;
+         transform: translateY(-50%) scaleY(1); /* Ensure it scales correctly */
+    }
+    .navbar li a:hover, .navbar li a.active {
+        background-color: rgba(var(--accent-primary-green-rgb), 0.08);
+    }
+    /* Adjusts font sizes for page opener elements. */
+    .page-opener h1 { font-size: clamp(2.1rem, 6vw, 3.3rem); }
+    .page-opener .opener-subtitle { font-size: clamp(1rem, 2.6vw, 1.3rem); }
+    /* Adjusts flashcards grid to a single column. */
+    .flashcards { grid-template-columns: 1fr; gap: 25px; }
+    /* Adjusts card height to be auto with a minimum. */
+    .card { height: auto; min-height: 280px; }
+    /* Reduces padding for content sections. */
+    .content-section { padding: clamp(35px, 6.5vh, 60px) 15px; }
+    /* Reduces font size and underline size for h2 elements. */
+    h2 { font-size: clamp(1.9rem, 5vw, 2.5rem); }
+    h2::after { width: 70px; height: 3.5px; }
+}
+/* Styles for mobile-sized screens (max-width: 480px). */
+@media (max-width: 480px) {
+    /* Further reduces font sizes for h3 and p elements. */
+    h3 { font-size: clamp(1.35rem, 4.8vw, 1.7rem); }
+    p { font-size: clamp(0.95rem, 2.7vw, 1.02rem); }
+    /* Allows data table to take full width and potentially scroll. */
+    .data_table { min-width: 100%; }
+    /* Reduces padding in table cells. */
+    .data_table th, .data_table td { padding: 10px 12px; }
+}

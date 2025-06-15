@@ -1,0 +1,225 @@
+/*
+    css/about_styles.css
+    Styles for About Me Page - Earthy Glow Theme & Scroll Animations
+    Version: 2.1
+*/
+
+/* --- About Me Page Opener --- */
+/* Styles for the main hero/opener section of the About Me page. */
+#about-opener {
+    /* Background image with a gradient overlay for better text contrast and style. */
+    background-image: linear-gradient(rgba(var(--accent-dark-green-rgb), 0.45), rgba(var(--accent-dark-green-rgb), 0.65)), url('../assets/images/profile_banner_about.jpg');
+    min-height: 55vh; /* Sets a minimum height for the opener. */
+    background-attachment: fixed; /* Creates a parallax-like effect on scroll. */
+}
+/* Styles for the main heading (H1) within the About Me page opener. */
+#about-opener .opener-content h1 {
+    font-family: var(--special-font); /* Uses the defined special font. */
+    /* Complex text shadow for a prominent gold glow effect. */
+    text-shadow: 0 0 12px rgba(var(--accent-gold-highlight-rgb), 0.8), 0 0 25px rgba(var(--accent-gold-highlight-rgb), 0.6), 1px 1px 3px rgba(0,0,0,0.3);
+}
+
+/* --- Custom H2 Underlines on About Page --- */
+/* Customizes the H2 underline for specific sections on the About page to use a gold highlight. */
+.about-intro-section h2::after, .passion-section h2::after, .experiences-section h2::after, .green-hacks-section h2::after {
+    background: var(--accent-gold-highlight); /* Gold background for the underline. */
+     box-shadow: var(--glow-shadow-gold-medium); /* Gold glow effect. */
+     width: 75px; /* Specific width for these underlines. */
+}
+/* Enhances the gold underline shadow on hover for these specific H2s. */
+.about-intro-section h2:hover::after, .passion-section h2:hover::after, .experiences-section h2:hover::after, .green-hacks-section h2:hover::after {
+    box-shadow: 0 0 22px rgba(var(--accent-gold-highlight-rgb), 0.7), 0 0 9px rgba(var(--accent-gold-highlight-rgb), 0.9);
+}
+
+/* --- Introduction Section --- */
+/* Styles for the main introduction section of the About Me page. */
+.about-intro-section {
+    background-color: rgba(var(--accent-tan-rgb), 0.1); /* Subtle tan background tint. */
+    padding: var(--section-padding); /* Uses global section padding. */
+     border-radius: var(--border-radius-lg); /* Rounded corners. */
+    margin-bottom: clamp(35px, 5vh, 50px); /* Space below the section. */
+    border: 1px solid var(--border-subtle); /* Subtle border. */
+}
+/* Grid layout for the content within the introduction section (image and text). */
+.about-intro-section .about-intro-content {
+    display: grid; grid-template-columns: 1fr; /* Single column by default. */
+     gap: clamp(30px, 4.5vw, 45px); /* Responsive gap. */
+    align-items: center; /* Vertically aligns items if they have different heights. */
+     margin-top: 10px; /* Space above the grid content. */
+}
+/* Switches to a two-column layout for the intro content on larger screens. */
+@media (min-width: 768px) {
+    .about-intro-section .about-intro-content {
+        grid-template-columns: auto 1fr; /* Image takes its content width, text takes the rest. */
+         gap: clamp(45px, 5.5vw, 60px); /* Larger gap for wider screens. */
+    }
+}
+/* Container for the profile image and its caption. */
+.profile-image-container {
+    text-align: center; /* Centers the image and caption if text-align applies. */
+     margin: 0 auto 20px auto; /* Centers the container itself on small screens. */
+     position: relative; /* For potential future positioning of elements within. */
+}
+/* Adjusts margin for the profile image container on larger screens (when in a grid). */
+@media (min-width: 768px) { .profile-image-container { margin: 0; padding-right: 25px; } }
+
+/* Styles for the profile picture. */
+.profile-pic {
+    width: clamp(185px, 31vw, 245px); /* Responsive width. */
+     height: clamp(185px, 31vw, 245px); /* Responsive height, maintaining aspect ratio for circle. */
+    border-radius: 50%; /* Makes the image circular. */
+     object-fit: cover; /* Ensures the image covers the circular area, cropping if necessary. */
+      object-position: center; /* Centers the image within its bounds. */
+    border: 8px solid var(--accent-gold-highlight); /* Thick gold border. */
+    box-shadow: 0 0 28px rgba(var(--accent-gold-highlight-rgb), 0.45), 0 7px 22px rgba(0,0,0,0.25); /* Gold glow and depth shadow. */
+    margin-bottom: 15px; /* Space below the image, before the caption. */
+    /* Transitions for smooth hover effects. */
+    transition: transform var(--transition-speed-normal) var(--transition-elastic),
+                box-shadow var(--transition-speed-normal) var(--transition-ease);
+}
+/* Hover effect for the profile picture. */
+.profile-pic:hover {
+    transform: scale(1.08) rotate(3.5deg) translateY(-7px); /* Scales, rotates, and lifts the image slightly. */
+    box-shadow: 0 0 35px rgba(var(--accent-gold-highlight-rgb), 0.6), 0 10px 30px rgba(0,0,0,0.3); /* Enhanced shadows. */
+}
+/* Styles for the caption below the profile picture. */
+.profile-image-container figcaption {
+    font-style: italic;
+     color: var(--text-muted);
+      font-size: clamp(0.92rem, 1.15vw, 1.02rem); /* Responsive font size. */
+    font-weight: 400;
+     margin-top: 8px; /* Space above the caption. */
+}
+/* Styles for the H2 heading within the introductory text block. */
+.intro-text h2 {
+    margin-bottom: 18px;
+    font-size: clamp(1.9rem, 3.6vw, 2.6rem); /* Responsive font size. */
+     color: var(--accent-dark-green);
+}
+/* Styles for paragraphs within the introductory text block. */
+.intro-text p {
+    max-width: none; /* Allows text to fill its container within the grid. */
+    font-size: clamp(1.05rem, 1.65vw, 1.18rem); /* Responsive font size. */
+     line-height: 1.8; /* Increased line height for readability. */
+    color: var(--text-main);
+}
+
+/* --- Passion Section --- */
+/* Styles for the section describing personal passions. */
+.passion-section {
+    background-image: linear-gradient(160deg, rgba(var(--accent-light-green-rgb), 0.5) 0%, var(--bg-section-subtle) 80%); /* Subtle gradient background. */
+    border-radius: var(--border-radius-lg); /* Rounded corners. */
+     padding: clamp(35px, 5.5vh, 50px) clamp(30px, 4vw, 50px); /* Responsive padding. */
+    margin-top: clamp(35px, 5vh, 50px); /* Space above the section. */
+    box-shadow: 0 7px 25px rgba(var(--accent-dark-green-rgb), 0.08); /* Subtle drop shadow. */
+    border-top: 5px solid var(--accent-primary-green); /* Decorative top border. */
+}
+/* Styles for paragraphs within the passion section. */
+.passion-section p {
+    font-size: clamp(1.05rem, 1.65vw, 1.18rem); /* Responsive font size. */
+     color: var(--text-main); line-height: 1.75;
+}
+
+/* --- Experiences Section --- */
+/* Styles for the section detailing experiences (e.g., projects, roles). */
+.experiences-section { margin-top: clamp(35px, 5vh, 50px); /* Space above the section. */ }
+/* Styles for the list of experiences. */
+.experience-list { list-style: none; padding-left: 0; margin-top: 30px; /* Removes default list styling. */ }
+/* Styles for individual list items (experiences). */
+.experience-list li {
+    background-color: var(--bg-card); /* White background for each item. */
+     padding: clamp(18px, 2.8vh, 24px) clamp(20px, 3.2vw, 28px); /* Responsive padding. */
+    margin-bottom: 18px; /* Space between items. */
+     border-radius: var(--border-radius-md); /* Rounded corners. */
+    border-left: 7px solid var(--accent-primary-green); /* Accent left border. */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.06); /* Subtle shadow. */
+    /* Transitions for smooth hover effects. */
+    transition: background-color var(--transition-speed-normal) var(--transition-ease),
+                transform var(--transition-speed-normal) var(--transition-elastic),
+                box-shadow var(--transition-speed-normal) var(--transition-ease);
+    font-size: clamp(1rem, 1.55vw, 1.12rem); /* Responsive font size. */
+     line-height: 1.75;
+    /* Animation is typically applied by .animated-section on a parent or this element itself. */
+}
+/* Hover effect for experience list items. */
+.experience-list li:hover {
+    background-color: var(--accent-light-green); /* Light green background on hover. */
+     transform: translateX(12px) scale(1.01); /* Shifts item right and slightly enlarges it. */
+    box-shadow: 0 8px 22px rgba(var(--accent-primary-green-rgb), 0.15); /* Enhanced shadow. */
+}
+/* Custom bullet point (emoji) for experience list items. */
+.experience-list li::before {
+    content: "🌱"; /* Emoji as a bullet point. */
+     margin-right: 14px; /* Space after the bullet. */
+      color: var(--accent-primary-green); /* Matches accent color. */
+       font-size: 1.2em; /* Slightly larger bullet. */
+    display: inline-block; /* Allows transform. */
+     transition: transform 0.3s ease; /* Smooth animation for the bullet. */
+}
+/* Hover effect for the custom bullet point. */
+.experience-list li:hover::before { transform: rotate(12deg); /* Rotates the emoji on hover. */ }
+
+/* --- Green Hacks Section --- */
+/* Styles for the section showcasing "Green Hacks" or tips. */
+.green-hacks-section { margin-top: clamp(35px, 5vh, 50px); padding-bottom: 20px; /* Space above and some padding at the bottom. */ }
+/* Grid layout for displaying hack cards. */
+.hacks-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* Single column by default. */
+    gap: clamp(35px, 4.5vw, 45px); /* Responsive gap. */
+    margin-top: 30px; /* Space above the grid. */
+}
+/* Switches to a two-column layout for the hacks grid on larger screens. */
+@media (min-width: 768px) { .hacks-grid { grid-template-columns: 1fr 1fr; } }
+
+/* Styles for individual hack cards (often <article> elements). */
+.hack-card {
+    background-color: var(--bg-card); /* White background. */
+     border-radius: var(--border-radius-lg); /* Rounded corners. */
+      overflow: hidden; /* Clips content (like image hover effect) to card bounds. */
+    box-shadow: var(--card-depth-shadow); /* Depth shadow. */
+     display: flex; /* Enables flexbox for layout. */
+      flex-direction: column; /* Stacks image and content vertically. */
+    /* Transitions for smooth hover effects. */
+    transition: box-shadow var(--transition-speed-normal) var(--transition-ease),
+                transform var(--transition-speed-normal) var(--transition-elastic);
+    border: 1px solid var(--border-subtle); /* Subtle border. */
+    /* Animation applied by .animated-section from base.css. */
+}
+/* Hover effects for hack cards. */
+.hack-card:hover {
+    box-shadow: var(--card-hover-depth-shadow), var(--glow-shadow-gold-medium); /* Enhanced depth and gold glow shadow. */
+    transform: translateY(-10px); /* Lifts the card slightly. */
+     border-color: var(--accent-gold-highlight); /* Gold border on hover. */
+}
+/* Styles for images within hack cards. */
+.hack-card img {
+    width: 100%;
+    height: 240px; /* Fixed height for consistent image appearance. */
+    object-fit: cover; /* Ensures image covers the area, cropping if necessary. */
+    transition: transform 0.55s var(--transition-ease), filter 0.55s var(--transition-ease); /* Smooth image transitions. */
+    border-bottom: 5px solid var(--accent-gold-highlight); /* Decorative gold border at the bottom of the image. */
+}
+/* Hover effects for images within hack cards. */
+.hack-card:hover img {
+    transform: scale(1.08); /* Slightly zooms into the image. */
+     filter: brightness(1.08) saturate(1.1) contrast(1.03); /* Enhances image vibrancy. */
+}
+/* Styles for the content area within hack cards. */
+.hack-card .hack-content { padding: clamp(25px, 3.5vh, 35px); flex-grow: 1; /* Responsive padding; allows content to fill vertical space. */ }
+/* Styles for headings (H3) within hack cards. */
+.hack-card h3 {
+    margin-bottom: 15px;
+    color: var(--accent-dark-green);
+    font-size: clamp(1.45rem, 2.3vw, 1.75rem); /* Responsive font size. */
+    text-shadow: 1px 1px 2px rgba(var(--accent-dark-green-rgb),0.1); /* Subtle text shadow. */
+}
+/* Styles for paragraphs within hack cards. */
+.hack-card p {
+    font-size: clamp(0.98rem, 1.35vw, 1.08rem); /* Responsive font size. */
+    line-height: 1.75;
+     margin-bottom: 10px; /* Space below paragraphs. */
+    color: var(--text-main);
+}
+/* Styles for strong text within hack card paragraphs. */
+.hack-card p strong { font-weight: 600; color: var(--text-heading); /* Makes strong text more prominent. */ }
